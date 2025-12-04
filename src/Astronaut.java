@@ -51,7 +51,7 @@ public class Astronaut {
             dy = -dy;
         }
 
-        if(ypos >= 600-height){
+        if(ypos >= 700-height){
             dy = -dy;
         }
 
