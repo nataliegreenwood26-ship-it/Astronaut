@@ -13,7 +13,7 @@ public class Asteroid {
         xpos = pXpos;
         ypos = pYpos;
         dx = 2;
-        dy = -5;
+        dy = 5;
         width = 85;
         height = 85;
         isAlive = true;
@@ -23,7 +23,7 @@ public class Asteroid {
     //The move method.  Everytime this is run (or "called") the hero's x position and y position change by dx and dy
     public void move() {
         if(xpos>=1000) { //wrap when hits right wall
-            xpos = 0-width;
+            xpos = -width;
 
         }
         if(xpos<=0){
