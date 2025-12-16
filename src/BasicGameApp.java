@@ -41,6 +41,7 @@ public class BasicGameApp implements Runnable {
 	public Image astroPic;
     public Image asteroidPic;
     public Image asteroid2Pic;
+    public Image backgroundpic;
 
 
    //Declare the objects used in the program
@@ -90,6 +91,8 @@ public class BasicGameApp implements Runnable {
 		astroPic = Toolkit.getDefaultToolkit().getImage("astronaut.png"); //load the picture
         asteroidPic = Toolkit.getDefaultToolkit().getImage("Asteroid.png"); //load the picture
         asteroid2Pic = Toolkit.getDefaultToolkit().getImage("Asteroid2.png"); //load the picture
+        backgroundpic = Toolkit.getDefaultToolkit().getImage("stars.png"); //load the picture
+
         astro = new Astronaut(WIDTH/2,HEIGHT/2);
         astro2 = new Astronaut(randx, randy);
         asteroid1 = new Asteroid(randx, randy);
@@ -137,9 +140,25 @@ public class BasicGameApp implements Runnable {
         System.out.println("CRASH!!!");
         astro.dx = -astro.dx;
         astro2.dx = -astro2.dx;
+        astro2.isAlive = false;
         }
-if(asteroid1.hitbox.intersects(asteroid2.hitbox));
-System.out.println("AHHHHH!!");
+if(asteroid1.hitbox.intersects(asteroid2.hitbox) && asteroid1.isCrashing == false) {
+    System.out.println("AHHHHH!!");
+    asteroid1.height += 50;
+//  asteroid1.height = asteroid1.height+50
+    asteroid1.isCrashing = true;
+}
+
+if(!asteroid1.hitbox.intersects(asteroid2.hitbox)){
+    //System.out.println("not intersecting");
+    asteroid1.isCrashing = false;
+
+}
+
+
+
+
+
 
 
     }
@@ -191,8 +210,15 @@ System.out.println("AHHHHH!!");
 		g.clearRect(0, 0, WIDTH, HEIGHT);
 
       //draw the image of the astronaut
-		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
-        g.drawImage(astroPic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
+        g.drawImage(backgroundpic, 0, 0,WIDTH, HEIGHT, null);
+        g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
+      //  g.drawImage(astroPic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
+
+        if(astro2.isAlive== true) {
+            g.drawImage(astroPic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
+
+
+        }
         g.drawImage(asteroidPic, asteroid1.xpos, asteroid1.ypos, asteroid1.width, asteroid1.height, null);
         g.drawImage(asteroid2Pic, asteroid2.xpos, asteroid2.ypos, asteroid2.width, asteroid2.height, null);
         g.drawRect(astro.hitbox.x,astro.hitbox.y,astro.hitbox.width,astro.hitbox.height);
