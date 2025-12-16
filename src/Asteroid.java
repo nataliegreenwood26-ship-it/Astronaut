@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class Asteroid {
     public String name;                //holds the name of the hero
     public int xpos;                //the x position
@@ -7,6 +9,7 @@ public class Asteroid {
     public int width;
     public int height;
     public boolean isAlive;            //a boolean to denote if the hero is alive or dead.
+    public Rectangle hitbox;
 
 
     public Asteroid(int pXpos, int pYpos) {
@@ -17,13 +20,15 @@ public class Asteroid {
         width = 85;
         height = 85;
         isAlive = true;
+        hitbox = new Rectangle(xpos, ypos, width,height);
 
     } // constructor
 
     //The move method.  Everytime this is run (or "called") the hero's x position and y position change by dx and dy
     public void move() {
         if(xpos>=1000) { //wrap when hits right wall
-            xpos = -width;
+            xpos = -xpos;
+            ypos = -ypos;
 
         }
         if(xpos<=0){
@@ -41,6 +46,7 @@ public class Asteroid {
 
     xpos = xpos +dx;
     ypos = ypos + dy;
+    hitbox = new Rectangle(xpos, ypos, width,height);
 
     }
 

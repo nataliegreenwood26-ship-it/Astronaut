@@ -93,6 +93,7 @@ public class BasicGameApp implements Runnable {
         astro = new Astronaut(WIDTH/2,HEIGHT/2);
         astro2 = new Astronaut(randx, randy);
         asteroid1 = new Asteroid(randx, randy);
+        asteroid1.dx = -asteroid1.dx;
         asteroid2 = new Asteroid (200, 100);
 
 
@@ -137,7 +138,8 @@ public class BasicGameApp implements Runnable {
         astro.dx = -astro.dx;
         astro2.dx = -astro2.dx;
         }
-
+if(asteroid1.hitbox.intersects(asteroid2.hitbox));
+System.out.println("AHHHHH!!");
 
 
     }
