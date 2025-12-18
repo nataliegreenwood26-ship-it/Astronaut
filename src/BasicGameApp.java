@@ -134,13 +134,19 @@ public class BasicGameApp implements Runnable {
 
 	}
 
-    public void crashing (){
+    public void crashing () {
         //Check to see if my astro's crash into each other
-        if(astro.hitbox.intersects(astro2.hitbox)){
-        System.out.println("CRASH!!!");
-        astro.dx = -astro.dx;
-        astro2.dx = -astro2.dx;
-        astro2.isAlive = false;
+        if (astro.hitbox.intersects(astro2.hitbox)) {
+            System.out.println("CRASH!!!");
+            astro.dx = -astro.dx;
+            astro2.dx = -astro2.dx;
+            astro2.isAlive = false;
+        }
+        if (asteroid1.hitbox.intersects(asteroid2.hitbox)){
+            System.out.println("OHNO!");
+            asteroid1.dx = -asteroid1.dx;
+            asteroid2.dx = -asteroid2.dx;
+            asteroid2.isAlive = false;
         }
 if(asteroid1.hitbox.intersects(asteroid2.hitbox) && asteroid1.isCrashing == false) {
     System.out.println("AHHHHH!!");
@@ -148,6 +154,7 @@ if(asteroid1.hitbox.intersects(asteroid2.hitbox) && asteroid1.isCrashing == fals
 //  asteroid1.height = asteroid1.height+50
     asteroid1.isCrashing = true;
 }
+
 
 if(!asteroid1.hitbox.intersects(asteroid2.hitbox)){
     //System.out.println("not intersecting");
@@ -217,11 +224,16 @@ if(!asteroid1.hitbox.intersects(asteroid2.hitbox)){
         if(astro2.isAlive== true) {
             g.drawImage(astroPic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
 
-
         }
         g.drawImage(asteroidPic, asteroid1.xpos, asteroid1.ypos, asteroid1.width, asteroid1.height, null);
-        g.drawImage(asteroid2Pic, asteroid2.xpos, asteroid2.ypos, asteroid2.width, asteroid2.height, null);
+
+        if(asteroid2.isAlive==true){
+            g.drawImage(asteroid2Pic,asteroid2.xpos,asteroid2.ypos,asteroid2.width, asteroid2.height, null);
+        }
+
         g.drawRect(astro.hitbox.x,astro.hitbox.y,astro.hitbox.width,astro.hitbox.height);
+        g.drawRect(asteroid1.hitbox.x,asteroid1.hitbox.y,asteroid1.hitbox.width,asteroid1.hitbox.height);
+
 
         g.setColor(Color.BLUE);
         g.fillRect(100,300,200,200);
